@@ -35,7 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.gravity = CGVectorMake(0, 0)
         physicsWorld.contactDelegate = self
         
-        let ball = childNodeWithName(BallCategoryName) as! SKSpriteNode
+        let ball = childNodeWithName(BallCategoryName) as SKSpriteNode!
         ball.physicsBody!.applyImpulse(CGVectorMake(10, -10))
         
         // Create an edge-based body that covers the bottom of the screen
@@ -45,7 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(bottom)
         
         // Set up the categoryBitMasks
-        let paddle = childNodeWithName(PaddleCategoryName) as! SKSpriteNode
+        let paddle = childNodeWithName(PaddleCategoryName) as SKSpriteNode!
         
         bottom.physicsBody!.categoryBitMask = BottomCategory
         ball.physicsBody!.categoryBitMask = BallCategory
@@ -55,47 +55,63 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody!.contactTestBitMask = BottomCategory
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        for touchObj in touches {
-            var touch = touchObj as! UITouch
-            var touchLocation = touch.locationInNode(self);
-            
-            if let body = physicsWorld.bodyAtPoint(touchLocation){
-                if body.node!.name == PaddleCategoryName{
-                    println("Began touch on paddle")
-                    isFingerOnPaddle = true
-                }
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        var touch = touches.anyObject() as UITouch!
+        var touchLocation = touch.locationInNode(self);
+        
+        if let body = physicsWorld.bodyAtPoint(touchLocation){
+            if body.node!.name == PaddleCategoryName{
+                println("Began touch on paddle")
+                isFingerOnPaddle = true
             }
         }
     }
     
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
         // Check whether user touched the paddle
         if isFingerOnPaddle {
             // Get touch location
-            for touchObj in touches{
-                var touch = touchObj as! UITouch
-                var touchLocation = touch.locationInNode(self)
-                var previousLocation = touch.previousLocationInNode(self)
-                
-                // Get node for paddle
-                var paddle = childNodeWithName(PaddleCategoryName) as! SKSpriteNode
-                
-                // Calculate new position along x for paddle
-                var paddleX = paddle.position.x + (touchLocation.x - previousLocation.x)
-                
-                // Limit x so that paddle won't leave screen to left or right
-                paddleX = max(paddleX, paddle.size.width/2)
-                paddleX = min(paddleX, size.width - paddle.size.width/2)
-                
-                // Update paddle position
-                paddle.position = CGPointMake(paddleX, paddle.position.y)
-
-            }
+            var touch = touches.anyObject() as UITouch!
+            var touchLocation = touch.locationInNode(self)
+            var previousLocation = touch.previousLocationInNode(self)
+            
+            // Get node for paddle
+            var paddle = childNodeWithName(PaddleCategoryName) as SKSpriteNode!
+            
+            // Calculate new position along x for paddle
+            var paddleX = paddle.position.x + (touchLocation.x - previousLocation.x)
+            
+            // Limit x so that paddle won't leave screen to left or right
+            paddleX = max(paddleX, paddle.size.width/2)
+            paddleX = min(paddleX, size.width - paddle.size.width/2)
+            
+            // Update paddle position
+            paddle.position = CGPointMake(paddleX, paddle.position.y)
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         isFingerOnPaddle = false
+    }
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        // Create local variables for two physic bodies
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        
+        // Assign two physic bodies so that the one with the lower category is always stored in fristBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        // React to the contact between ball and bottom
+        if firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == BottomCategory {
+            // TODO: Replace the log statement with display of Game Over Scene
+            println("Hit bottom. First contact has been made.")
+        }
     }
 }
