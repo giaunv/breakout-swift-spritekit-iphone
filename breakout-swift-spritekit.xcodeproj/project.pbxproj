@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BC95871ADC817900C4E68A /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 04BC95861ADC817900C4E68A /* GameOverScene.sks */; };
+		04BC95891ADC82D000C4E68A /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BC95881ADC82D000C4E68A /* GameOverScene.swift */; };
 		94199B711AD8DDCA00A4EE62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94199B701AD8DDCA00A4EE62 /* AppDelegate.swift */; };
 		94199B731AD8DDCA00A4EE62 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 94199B721AD8DDCA00A4EE62 /* GameScene.sks */; };
 		94199B751AD8DDCA00A4EE62 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94199B741AD8DDCA00A4EE62 /* GameScene.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04BC95861ADC817900C4E68A /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		04BC95881ADC82D000C4E68A /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		94199B6B1AD8DDCA00A4EE62 /* breakout-swift-spritekit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "breakout-swift-spritekit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94199B6F1AD8DDCA00A4EE62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94199B701AD8DDCA00A4EE62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				94199B721AD8DDCA00A4EE62 /* GameScene.sks */,
 				94199B741AD8DDCA00A4EE62 /* GameScene.swift */,
 				94199B761AD8DDCA00A4EE62 /* GameViewController.swift */,
+				04BC95861ADC817900C4E68A /* GameOverScene.sks */,
+				04BC95881ADC82D000C4E68A /* GameOverScene.swift */,
 				94199B781AD8DDCA00A4EE62 /* Main.storyboard */,
 				94199B7B1AD8DDCA00A4EE62 /* Images.xcassets */,
 				94199B7D1AD8DDCA00A4EE62 /* LaunchScreen.xib */,
@@ -201,6 +207,7 @@
 				94199B7F1AD8DDCA00A4EE62 /* LaunchScreen.xib in Resources */,
 				94199B7C1AD8DDCA00A4EE62 /* Images.xcassets in Resources */,
 				94199B731AD8DDCA00A4EE62 /* GameScene.sks in Resources */,
+				04BC95871ADC817900C4E68A /* GameOverScene.sks in Resources */,
 				94199B7A1AD8DDCA00A4EE62 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +228,7 @@
 			files = (
 				94199B751AD8DDCA00A4EE62 /* GameScene.swift in Sources */,
 				94199B771AD8DDCA00A4EE62 /* GameViewController.swift in Sources */,
+				04BC95891ADC82D000C4E68A /* GameOverScene.swift in Sources */,
 				94199B711AD8DDCA00A4EE62 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +421,7 @@
 				94199B901AD8DDCB00A4EE62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94199B911AD8DDCB00A4EE62 /* Build configuration list for PBXNativeTarget "breakout-swift-spritekitTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +430,7 @@
 				94199B931AD8DDCB00A4EE62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
