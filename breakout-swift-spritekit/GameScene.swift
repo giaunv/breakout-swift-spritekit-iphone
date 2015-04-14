@@ -163,4 +163,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         return numberOfBricks == 0
     }
+    
+    override func update(currentTime: NSTimeInterval) {
+        let ball = self.childNodeWithName(BallCategoryName) as SKSpriteNode!
+        
+        let maxSpeed: CGFloat = 1000.0
+        let speed = sqrt(ball.physicsBody!.velocity.dx * ball.physicsBody!.velocity.dx + ball.physicsBody!.velocity.dy * ball.physicsBody!.velocity.dy)
+        
+        if speed > maxSpeed {
+            ball.physicsBody!.linearDamping = 0.4
+        } else {
+            ball.physicsBody!.linearDamping = 0.0
+        }
+    }
 }
