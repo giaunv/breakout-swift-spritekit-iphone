@@ -2,7 +2,7 @@
 //  GameOverScene.swift
 //  breakout-swift-spritekit
 //
-//  Created by MAC on 4/14/15.
+//  Created by giaunv on 4/14/15.
 //  Copyright (c) 2015 366. All rights reserved.
 //
 
