@@ -145,7 +145,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // React to the contact between ball and block
         if firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == BlockCategory {
             secondBody.node!.removeFromParent()
-            // TODO: Check if the game has been won
+            if isGameWon() {
+                if let mainView = view {
+                    let gameOverScene = GameOverScene.unarchiveFromFile("GameOverScene") as GameOverScene!
+                    gameOverScene.gameWon = true
+                    mainView.presentScene(gameOverScene)
+                }
+            }
         }
+    }
+    
+    func isGameWon() -> Bool {
+        var numberOfBricks = 0
+        self.enumerateChildNodesWithName(BlockCategoryName, usingBlock: { (node, stop) -> Void in
+            numberOfBricks = numberOfBricks + 1
+        })
+        
+        return numberOfBricks == 0
     }
 }
